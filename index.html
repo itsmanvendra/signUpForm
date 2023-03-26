@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/05119d41c9.js" crossorigin="anonymous"></script>
+    <title>Sign Up</title>
+</head>
+<body>
+    <div class="container">
+        
+        <form>
+            <h1>Sign Up</h1>
+
+            <input type="text" placeholder="Full Name" id="fullName" class="input">
+            
+            <input type="email" placeholder="Email" id="email" class="input">
+            
+            <div class="password">
+                <input type="password" placeholder="Password" id="password" class="input ">
+                <i class="fa-regular fa-eye-slash" id="showPass"></i>
+            </div>
+            <div class="password">
+                <input type="password" placeholder="Confirm Password" id="cnfrmPassword" class="input">
+                <i class="fa-regular fa-eye-slash" id="showCnfPass"></i>
+            </div>
+            
+            <div class="captchaContainer">
+                <canvas id="myCanvas" width="200px" height="50px" style="background-color: #F5C6EC"></canvas>
+                <button id="btnR" type="reset">↺</button>
+            </div>
+            
+            <input type="text" placeholder="Enter Captcha" id="confirmCaptcha" class="input">
+            <button id="btnCA" type="submit">Create Account</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
