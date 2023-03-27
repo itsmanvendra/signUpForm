@@ -1,4 +1,5 @@
 'use strict';
+const form = document.querySelector('.form');
 let fullName = document.getElementById('fullName');
 let email = document.getElementById('email');
 let password = document.getElementById('password');
@@ -7,7 +8,9 @@ let enterCaptcha = document.getElementById('confirmCaptcha');
 let submit = document.getElementById('btnCA');
 let showPass = document.getElementById('showPass');
 let showCnfPass = document.getElementById('showCnfPass');
-
+const btnTheme = document.getElementById('theme');
+const moon = document.querySelector('.themeChange')
+const body = document.querySelector('.mainContainer');
 let captchaString = "";
 const btnReset = document.getElementById('btnR');
 let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
@@ -17,8 +20,8 @@ function generateString(){
         captchaString += letters.charAt(Math.floor(Math.random() * letters.length))
     }
 }
-generateString();
-console.log(captchaString);
+
+// console.log(captchaString);
 
 
 
@@ -35,13 +38,19 @@ function generateCaptcha(){
     }
 
 }
-generateCaptcha();
+
 function generateCaptchaBG(){
     let canvas = document.getElementById("myCanvas");
     let ctx = canvas.getContext("2d");
     ctx.fillStyle = "#F5C6EC";
     ctx.fillRect(0,0, 200, 50);
 
+}
+
+function init(){
+    generateCaptchaBG();
+    generateString();
+    generateCaptcha();
 }
 btnReset.addEventListener('click', function(e){
     e.preventDefault();
@@ -54,33 +63,26 @@ btnReset.addEventListener('click', function(e){
     
 })
 
-showPass.addEventListener('click', function(e){
-    if(showPass.classList.contains('fa-eye-slash')){
-        showPass.classList.remove('fa-eye-slash');
-        showPass.classList.add('fa-eye');
-        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-        password.setAttribute('type', type);
+function toggleEye(element, elementSelected){
+    if(elementSelected.classList.contains('fa-eye-slash')){
+        elementSelected.classList.remove('fa-eye-slash');
+        elementSelected.classList.add('fa-eye');
+        const type = element.getAttribute('type') === 'password' ? 'text' : 'password';
+        element.setAttribute('type', type);
     }
     else{
-        showPass.classList.add('fa-eye-slash');
-        showPass.classList.remove('fa-eye');
-        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-        password.setAttribute('type', type);
+        elementSelected.classList.add('fa-eye-slash');
+        elementSelected.classList.remove('fa-eye');
+        const type = element.getAttribute('type') === 'password' ? 'text' : 'password';
+        element.setAttribute('type', type);
     }
+}
+showPass.addEventListener('click', function(e){
+    
+    toggleEye(password, showPass);
 })
 showCnfPass.addEventListener('click', function(e){
-    if(showCnfPass.classList.contains('fa-eye-slash')){
-        showCnfPass.classList.remove('fa-eye-slash');
-        showCnfPass.classList.add('fa-eye');
-        const type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
-        confirmPassword.setAttribute('type', type);
-    }
-    else{
-        showCnfPass.classList.add('fa-eye-slash');
-        showCnfPass.classList.remove('fa-eye');
-        const type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
-        confirmPassword.setAttribute('type', type);
-    }
+    toggleEye(confirmPassword, showCnfPass);
 })
 submit.addEventListener('click', function(e){
     e.preventDefault();
@@ -89,33 +91,39 @@ submit.addEventListener('click', function(e){
         fullName.classList.add('error');
         console.log(`error`);
         a = false;
+        
     }
     if(email.value.trim().length < 1){
         email.classList.add('error');
         console.log(`error`);
         a = false;
+        
     }
     if(password.value.trim().length < 1){
         password.classList.add('error');
         console.log(`error`);
         a = false;
+        
     }
     if(confirmPassword.value.trim().length < 1){
         
         confirmPassword.classList.add('error');
         console.log(`error`);
         a = false;
+        
     }
     if(confirmPassword.value !== password.value){
         confirmPassword.classList.add('error');
         
         console.log(`error`);
         a = false;
+        
     }
     if(enterCaptcha.value !== captchaString){
         enterCaptcha.classList.add('error');
         console.log(`error`);
         a = false;
+        
     }
     if(a){
         console.log(confirmPassword.value);
@@ -130,3 +138,29 @@ submit.addEventListener('click', function(e){
         
     }
 })
+
+btnTheme.addEventListener('click', function(e){
+    e.preventDefault();
+    if(moon.classList.contains('fa-moon')){
+        moon.classList.remove('fa-moon');
+        moon.classList.add('fa-sun');
+        body.classList.remove('bg-light');
+        body.classList.add('bg-dark');
+        form.classList.remove('bg-form-light');
+        form.classList.add('bg-form-dark');
+        btnTheme.classList.remove('icon-light');
+        btnTheme.classList.add('icon-dark');
+
+    }
+    else{
+        moon.classList.add('fa-moon');
+        moon.classList.remove('fa-sun');
+        body.classList.add('bg-light');
+        body.classList.remove('bg-dark');
+        form.classList.add('bg-form-light');
+        form.classList.remove('bg-form-dark');
+        btnTheme.classList.add('icon-light');
+        btnTheme.classList.remove('icon-dark');
+    }
+})
+init();

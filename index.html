@@ -8,10 +8,10 @@
     <script src="https://kit.fontawesome.com/05119d41c9.js" crossorigin="anonymous"></script>
     <title>Sign Up</title>
 </head>
-<body>
+<body class="bg-light mainContainer">
     <div class="container">
         
-        <form>
+        <form class="form bg-form-light">
             <h1>Sign Up</h1>
 
             <input type="text" placeholder="Full Name" id="fullName" class="input">
@@ -20,11 +20,11 @@
             
             <div class="password">
                 <input type="password" placeholder="Password" id="password" class="input ">
-                <i class="fa-regular fa-eye-slash" id="showPass"></i>
+                <i class="fa-solid fa-eye-slash" id="showPass"></i>
             </div>
             <div class="password">
                 <input type="password" placeholder="Confirm Password" id="cnfrmPassword" class="input">
-                <i class="fa-regular fa-eye-slash" id="showCnfPass"></i>
+                <i class="fa-solid fa-eye-slash" id="showCnfPass"></i>
             </div>
             
             <div class="captchaContainer">
@@ -34,7 +34,10 @@
             
             <input type="text" placeholder="Enter Captcha" id="confirmCaptcha" class="input">
             <button id="btnCA" type="submit">Create Account</button>
+            <button class="icon-light" id="theme"><i class="fa-regular fa-moon themeChange"></i></button>
         </form>
+        
+        
     </div>
     <script src="script.js"></script>
 </body>
